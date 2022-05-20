@@ -8,22 +8,35 @@ public class Task1_BrowserHistory {
         Scanner scanner = new Scanner(System.in);
 
         String instruction = scanner.nextLine();
-        ArrayDeque<String> history = new ArrayDeque<>();
+        ArrayDeque<String> stackBack = new ArrayDeque<>();
+        ArrayDeque<String> stackForward = new ArrayDeque<>();
         String currentState = "";
         while (!instruction.equals("Home")) {
-            if (instruction.equals("back")) {
-                if (history.isEmpty()) {
+            if (!(instruction.equals("back") || instruction.equals("forward"))) {
+                if (!currentState.equals("")) {
+                    stackBack.push(currentState);
+                    stackForward.clear();
+                }
+                currentState = instruction;
+
+            } else if (instruction.equals("back")) {
+                if (stackBack.isEmpty()) {
                     System.out.println("no previous URLs");
                     instruction = scanner.nextLine();
                     continue;
                 } else {
-                    currentState = history.pop();
+                    stackForward.offer(currentState);
+                    currentState = stackBack.pop();
                 }
             } else {
-                if (!currentState.equals("")) {
-                    history.push(currentState);
+                if (stackForward.isEmpty()) {
+                    System.out.println("no next URLs");
+                    instruction = scanner.nextLine();
+                    continue;
+                } else {
+                    stackBack.push(currentState);
+                    currentState = stackForward.pop();
                 }
-                currentState = instruction;
             }
             System.out.println(currentState);
             instruction = scanner.nextLine();
