@@ -10,7 +10,20 @@ public class Task5_PrinterQueue {
         ArrayDeque<String> printer = new ArrayDeque<>();
 
         while (!input.equals("print")) {
-            
+            if (!input.equals("cancel")) {
+                printer.offer(input);
+            } else {
+                if (printer.isEmpty()) {
+                    System.out.println("Printer is on standby");
+                } else {
+                    System.out.println("Canceled " + printer.poll());
+                }
+            }
+            input = scanner.nextLine();
         }
+        for (String s : printer) {
+            System.out.println(s);
+        }
+
     }
 }
