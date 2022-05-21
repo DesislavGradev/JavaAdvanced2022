@@ -25,7 +25,7 @@ public class Task1_BrowserHistory {
                     instruction = scanner.nextLine();
                     continue;
                 } else {
-                    stackForward.offer(currentState);
+                    stackForward.push(currentState);
                     currentState = stackBack.pop();
                 }
             } else {
