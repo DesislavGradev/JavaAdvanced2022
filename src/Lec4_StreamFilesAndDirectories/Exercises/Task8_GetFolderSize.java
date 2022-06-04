@@ -10,7 +10,7 @@ public class Task8_GetFolderSize {
         ArrayDeque<File> directories = new ArrayDeque<>();
         directories.offer(folder);
         int totalSize = 0;
-        
+
         while (!directories.isEmpty()) {
             File currentDirectory = directories.poll();
             File[] nestedFiles = currentDirectory.listFiles();
