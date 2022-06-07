@@ -14,7 +14,27 @@ public class Main {
             double salary = Double.parseDouble(inputArr[1]);
             String position = inputArr[3];
             String department = inputArr[4];
+            Employee employee = null;
+            switch (inputArr.length) {
+                case 4:
+                    employee = new Employee(name, salary, position, department);
+                    break;
+                case 5:
+                    if (inputArr[4].matches("\\d+")) {
+                        int age = Integer.parseInt((inputArr[4]));
+                        employee = new Employee(name, salary, position, department, age);
+                    } else {
+                        String email = inputArr[4];
+                        employee = new Employee(name, salary, position, department, email);
+                    }
+                    break;
+                case 6:
+                    String email = inputArr[4];
+                    int age = Integer.parseInt(inputArr[5]);
+                    employee = new Employee(name, salary, position, department, email, age);
+                    break;
 
+            }
 
         }
     }
