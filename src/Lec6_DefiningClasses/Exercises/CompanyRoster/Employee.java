@@ -34,5 +34,27 @@ public class Employee {
         this.age = age;
     }
 
+    public String getName() {
+        return this.name;
+    }
 
+    public double getSalary() {
+        return this.salary;
+    }
+
+    public String getPosition() {
+        return this.position;
+    }
+
+    public String getDepartment() {
+        return this.department;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
 }
