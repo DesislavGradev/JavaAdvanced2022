@@ -1,5 +1,7 @@
 package Lec6_DefiningClasses.Exercises.CompanyRoster;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -7,6 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         int n = Integer.parseInt(scanner.nextLine());
+        Map<String, Department> departmentMap = new HashMap<>();
 
         while (n-- > 0) {
             String[] inputArr = scanner.nextLine().split("\\s+");
@@ -35,7 +38,8 @@ public class Main {
                     break;
 
             }
-
+            departmentMap.putIfAbsent(department, new Department(department));
+            departmentMap.get(department).getEmployees().add(employee);
         }
     }
 }
