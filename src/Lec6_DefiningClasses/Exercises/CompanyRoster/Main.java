@@ -1,15 +1,13 @@
 package Lec6_DefiningClasses.Exercises.CompanyRoster;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         int n = Integer.parseInt(scanner.nextLine());
-        Map<String, Department> departmentMap = new HashMap<>();
+        List<Department> departmentList = new ArrayList<>();
 
         while (n-- > 0) {
             String[] inputArr = scanner.nextLine().split("\\s+");
@@ -38,8 +36,21 @@ public class Main {
                     break;
 
             }
-            departmentMap.putIfAbsent(department, new Department(department));
-            departmentMap.get(department).getEmployees().add(employee);
+            boolean departmentExists = departmentList.stream().filter(dep -> dep.getName().equals(department)).count() >= 1;
+            if (!departmentExists) {
+                departmentList.add(new Department(department));
+            }
+            Department currentDepartment = departmentList.stream().filter(dep -> dep.getName().equals(department)).findFirst().get();
+            currentDepartment.getEmployees().add(employee);
         }
+
+        Department highestPaidDepartment = departmentList.stream()
+                .max(Comparator.comparingDouble(department -> department.calculateAverageSalary()))
+                .get();
+        System.out.printf("Highest Average Salary: %s%n", highestPaidDepartment.getName());
+
+        highestPaidDepartment.getEmployees().stream()
+                .sorted((e1, e2) -> Double.compare(e2.getSalary(), e1.getSalary()))
+                .forEach(System.out::println);
     }
 }
