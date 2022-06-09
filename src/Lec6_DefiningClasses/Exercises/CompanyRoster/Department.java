@@ -13,7 +13,7 @@ public class Department {
     }
 
     public double calculateAverageSalary() {
-        return employees.stream().mapToDouble(el -> el.getSalary()).average().orElse(0);
+        return employees.stream().mapToDouble(Employee::getSalary).average().orElse(0);
     }
 
     public String getName() {

@@ -3,7 +3,6 @@ package Lec6_DefiningClasses.Exercises.CompanyRoster;
 public class Employee {
 
     private String name;
-    ;
     private double salary;
     private String position;
     private String department;
@@ -56,5 +55,9 @@ public class Employee {
 
     public int getAge() {
         return this.age;
+    }
+    @Override
+    public String toString() {
+        return String.format("%s %.2f %s %d", this.name, this.salary, this.email, this.age);
     }
 }
