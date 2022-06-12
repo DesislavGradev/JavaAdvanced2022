@@ -10,31 +10,30 @@ public class Main {
         List<Department> departmentList = new ArrayList<>();
 
         while (n-- > 0) {
-            String[] inputArr = scanner.nextLine().split("\\s+");
-            String name = inputArr[0];
-            double salary = Double.parseDouble(inputArr[1]);
-            String position = inputArr[3];
-            String department = inputArr[4];
+            String[] employeeInfo = scanner.nextLine().split("\\s+");
+            String name = employeeInfo[0];
+            double salary = Double.parseDouble(employeeInfo[1]);
+            String position = employeeInfo[3];
+            String department = employeeInfo[4];
             Employee employee = null;
-            switch (inputArr.length) {
-                case 4:
+            switch (employeeInfo.length){
+                case 4: //NO email, NO age
                     employee = new Employee(name, salary, position, department);
                     break;
-                case 5:
-                    if (inputArr[4].matches("\\d+")) {
-                        int age = Integer.parseInt((inputArr[4]));
-                        employee = new Employee(name, salary, position, department, age);
-                    } else {
-                        String email = inputArr[4];
-                        employee = new Employee(name, salary, position, department, email);
-                    }
-                    break;
-                case 6:
-                    String email = inputArr[4];
-                    int age = Integer.parseInt(inputArr[5]);
+                case 6: // HAS email, HAS age
+                    String email = employeeInfo[4];
+                    int age = Integer.parseInt(employeeInfo[5]);
                     employee = new Employee(name, salary, position, department, email, age);
                     break;
-
+                case 5: // Или email Или age
+                    if(employeeInfo[4].matches("\\d+")){
+                        int personAge = Integer.parseInt(employeeInfo[4]);
+                        employee = new Employee(name, salary, position, department, personAge);
+                    } else {
+                        String personEmail = employeeInfo[4];
+                        employee = new Employee(name, salary, position, department, personEmail);
+                    }
+                    break;
             }
             boolean departmentExists = departmentList.stream().filter(dep -> dep.getName().equals(department)).count() >= 1;
             if (!departmentExists) {
