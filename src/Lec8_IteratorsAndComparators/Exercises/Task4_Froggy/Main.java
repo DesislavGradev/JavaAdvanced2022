@@ -17,6 +17,7 @@ public class Main {
         for (Integer element : lake) {
             result.add(element + "");
         }
+
         System.out.println(String.join(", ", result));
     }
 }

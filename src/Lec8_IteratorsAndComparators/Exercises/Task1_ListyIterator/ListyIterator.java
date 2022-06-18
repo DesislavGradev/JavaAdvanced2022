@@ -46,6 +46,7 @@ public class ListyIterator implements Iterable<String>{
             public String next() {
                 String element = elements.get(index);
                 index++;
+
                 return element;
             }
         };

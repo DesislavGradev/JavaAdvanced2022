@@ -30,6 +30,7 @@ public class Lake implements Iterable<Integer> {
                 index = 1;
                 firstRoundFinished = true;
             }
+
             return indexToReturn;
         }
     }
