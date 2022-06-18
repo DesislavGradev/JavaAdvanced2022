@@ -35,10 +35,8 @@ public class Main {
                     break;
                 case "PrintAll":
                     for (String s : listyIterator) {
-                        System.out.print(s + " " +
-                                "");
+                        System.out.print(s + " ");
                     }
-                    
                     System.out.println();
                     break;
             }
