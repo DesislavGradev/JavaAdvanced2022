@@ -42,7 +42,7 @@ public class Task2_MouseAndCheese {
                     moveMouse(field, 0, 1);
                     break;
             }
-            if (isInField) {
+            if (!isInField) {
                 break;
             }
 
