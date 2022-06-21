@@ -32,7 +32,8 @@ public class Main {
         System.out.println(hotel.getCount()); // 5
         //Remove Person
         System.out.println(hotel.remove("Alice")); //true
-        // Get Statistics System.out.println(hotel.getStatistics());
+        // Get Statistics
+        System.out.println(hotel.getStatistics());
         // The people in the hotel Hilton are:
         // Person Mark: 11111, Age: 41, Hometown: Sofia
         // Person Lizzy: 31311, Age: 24, Hometown: Varna
