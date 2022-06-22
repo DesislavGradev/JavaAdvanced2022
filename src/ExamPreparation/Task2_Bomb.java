@@ -2,7 +2,7 @@ package ExamPreparation;
 
 import java.util.Scanner;
 
-public class Bomb {
+public class Task2_Bomb {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
