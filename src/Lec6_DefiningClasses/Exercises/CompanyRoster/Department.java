@@ -4,31 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Department {
-    private String name;
-    private List<Employee> employees;
+    String name;
+    List <Employee> departmentEmployers = new ArrayList<>();
+    double averageSalary = 0;
+    double allSalary = 0;
+
 
     public Department(String name) {
         this.name = name;
-        this.employees = new ArrayList<>();
-    }
-
-    public double calculateAverageSalary() {
-        return employees.stream().mapToDouble(Employee::getSalary).average().orElse(0);
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public List<Employee> getEmployees(){
-        return this.employees;
+    public List<Employee> getDepartmentEmployers() {
+        return departmentEmployers;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public double getAverageSalary() {
+        return averageSalary;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setAverageSalary(double averageSalary) {
+        this.averageSalary = averageSalary;
+    }
+
+    public double getAllSalary() {
+        return allSalary;
+    }
+
+    public void setAllSalary(double salary) {
+        this.allSalary += salary;
+    }
+
+    public void updateSell(Department temp, double salary, Employee singleEmployee) {
+        temp.getDepartmentEmployers().add(singleEmployee);
+        temp.setAllSalary(salary);
+        double averageSalary = temp.getAllSalary()/temp.getDepartmentEmployers().size();
+        temp.setAverageSalary(averageSalary);
     }
 }
