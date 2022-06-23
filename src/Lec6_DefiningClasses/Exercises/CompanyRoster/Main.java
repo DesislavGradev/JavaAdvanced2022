@@ -4,52 +4,39 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner console = new Scanner(System.in);
+        int line = Integer.parseInt(console.nextLine());
+        Map<String, Department> departmentList = new HashMap<>();
+        while (line-- > 0){
+            String[] token = console.nextLine().split("\\s+");
+            Employee singleEmployee = null;
+            String name = token[0];
+            double salary = Double.parseDouble(token[1]);
+            String position = token[2];
+            String department = token[3];
 
-        int n = Integer.parseInt(scanner.nextLine());
-        List<Department> departmentList = new ArrayList<>();
+            if(token.length==4) {
+                singleEmployee = new Employee(name, salary, position, department);
 
-        while (n-- > 0) {
-            String[] employeeInfo = scanner.nextLine().split("\\s+");
-            String name = employeeInfo[0];
-            double salary = Double.parseDouble(employeeInfo[1]);
-            String position = employeeInfo[3];
-            String department = employeeInfo[4];
-            Employee employee = null;
-            switch (employeeInfo.length){
-                case 4: //NO email, NO age
-                    employee = new Employee(name, salary, position, department);
-                    break;
-                case 6: // HAS email, HAS age
-                    String email = employeeInfo[4];
-                    int age = Integer.parseInt(employeeInfo[5]);
-                    employee = new Employee(name, salary, position, department, email, age);
-                    break;
-                case 5: // Или email Или age
-                    if(employeeInfo[4].matches("\\d+")){
-                        int personAge = Integer.parseInt(employeeInfo[4]);
-                        employee = new Employee(name, salary, position, department, personAge);
-                    } else {
-                        String personEmail = employeeInfo[4];
-                        employee = new Employee(name, salary, position, department, personEmail);
-                    }
-                    break;
             }
-            boolean departmentExists = departmentList.stream().filter(dep -> dep.getName().equals(department)).count() >= 1;
-            if (!departmentExists) {
-                departmentList.add(new Department(department));
+            if(token.length==6) {
+                singleEmployee = new Employee(name, salary, position, department, token[4], Integer.parseInt(token[5]));
+
             }
-            Department currentDepartment = departmentList.stream().filter(dep -> dep.getName().equals(department)).findFirst().get();
-            currentDepartment.getEmployees().add(employee);
+            if(token.length==5) {
+                if(token[4].chars().allMatch(Character::isDigit)){
+                    singleEmployee = new Employee(name, salary, position, department, Integer.parseInt(token[4]));
+                } else {
+                    singleEmployee = new Employee(name, salary, position, department, token[4]);
+                }
+            }
+
+            departmentList.putIfAbsent(department, new Department(department));
+            Department temp = departmentList.get(department);
+            temp.updateSell(temp, salary, singleEmployee);
         }
-
-        Department highestPaidDepartment = departmentList.stream()
-                .max(Comparator.comparingDouble(department -> department.calculateAverageSalary()))
-                .get();
-        System.out.printf("Highest Average Salary: %s%n", highestPaidDepartment.getName());
-
-        highestPaidDepartment.getEmployees().stream()
-                .sorted((e1, e2) -> Double.compare(e2.getSalary(), e1.getSalary()))
-                .forEach(System.out::println);
+        Optional<Department> temp = departmentList.values().stream().max(Comparator.comparing(Department::getAverageSalary));
+        System.out.println("Highest Average Salary: " + temp.get().getName());
+        temp.get().getDepartmentEmployers().stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).forEach(System.out::println);
     }
 }
