@@ -42,6 +42,8 @@ public class Task2_Bomb {
                 case "down":
                     if (row != field.length - 1) {
                         row++;
+                    }else {
+
                     }
                     break;
                 case "left":
