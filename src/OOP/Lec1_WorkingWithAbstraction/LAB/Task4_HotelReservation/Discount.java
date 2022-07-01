@@ -1,4 +1,4 @@
-package OOP.Lec1_WorkingWithAbstraction.Task4_HotelReservation;
+package OOP.Lec1_WorkingWithAbstraction.LAB.Task4_HotelReservation;
 
 public enum Discount {
     VIP(0.8),
