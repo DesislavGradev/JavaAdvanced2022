@@ -1,4 +1,4 @@
-package OOP.Lec1_WorkingWithAbstraction.Task2_PointOfRectangle;
+package OOP.Lec1_WorkingWithAbstraction.LAB.Task2_PointOfRectangle;
 
 import java.util.Arrays;
 import java.util.Scanner;

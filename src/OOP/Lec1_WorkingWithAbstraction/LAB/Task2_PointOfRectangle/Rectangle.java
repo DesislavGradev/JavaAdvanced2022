@@ -1,4 +1,4 @@
-package OOP.Lec1_WorkingWithAbstraction.Task2_PointOfRectangle;
+package OOP.Lec1_WorkingWithAbstraction.LAB.Task2_PointOfRectangle;
 
 public class Rectangle {
     private Point a;
