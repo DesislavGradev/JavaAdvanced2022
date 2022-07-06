@@ -1,4 +1,4 @@
-package Task3_ShoppingSpree;
+package OOP.Lec2_Encapsulation.Exercises.Task3_ShoppingSpree;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
