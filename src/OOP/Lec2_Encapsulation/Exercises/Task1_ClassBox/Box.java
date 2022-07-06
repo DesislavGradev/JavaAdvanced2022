@@ -1,4 +1,4 @@
-package Task1_ClassBox;
+package OOP.Lec2_Encapsulation.Exercises.Task1_ClassBox;
 
 public class Box {
     private double length;
